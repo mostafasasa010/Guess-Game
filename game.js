@@ -3,7 +3,7 @@ document.title = gameName;
 document.querySelector("h1").innerHTML = gameName;
 document.querySelector(
   "footer"
-).innerHTML = `${gameName} Developed By Mostafa Ahmed`;
+).innerHTML = `${gameName} Created By Mostafa Ahmed`;
 
 let numbersTries = 5;
 let numbersLetters = 6;
@@ -25,10 +25,13 @@ function generateInputs() {
       let input = document.createElement("input");
       input.type = "text";
       input.id = `try-${i}-letter-${j}`;
+      input.setAttribute("maxLength", 1);
       div.appendChild(input);
     }
     inputs.appendChild(div);
   }
+
+  inputs.children[currentTry - 1].children[1].focus();
 }
 
 window.onload = function () {

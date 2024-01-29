@@ -24,6 +24,38 @@ h1 {
   align-items: flex-start;
   justify-content: space-between;
   .game-area {
+    .inputs {
+      > div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        span {
+          font-size: 26px;
+          font-weight: bold;
+          margin-right: 20px;
+        }
+        input {
+          width: 60px;
+          height: 60px;
+          border: none;
+          border-bottom: solid var(--main-color) 4px;
+          font-size: 50px;
+          font-weight: bold;
+          text-align: center;
+          color: var(--main-color);
+          &:not(:last-of-type) {
+            margin-right: 10px;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+        &.disabled-inputs {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+      }
+    }
   }
   .key-colors {
     h2 {
