@@ -25,8 +25,6 @@ let words = [
 ];
 guessWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
 
-console.log(guessWord);
-
 let numbersTries = 5;
 let numbersLetters = guessWord.length;
 let currentTry = 1;
