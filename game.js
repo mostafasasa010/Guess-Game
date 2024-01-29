@@ -31,7 +31,40 @@ function generateInputs() {
     inputs.appendChild(div);
   }
 
+  // Focus To First Input Into Current Try
   inputs.children[currentTry - 1].children[1].focus();
+
+  // Disabled Inputs Not Included In Current Try
+  let disabledInputs = document.querySelectorAll(
+    ".inputs .disabled-inputs input"
+  );
+  disabledInputs.forEach((input) => {
+    input.disabled = true;
+  });
+
+  // Manage Inputs
+  let letters = document.querySelectorAll(".inputs input");
+  letters.forEach((input, index) => {
+    input.addEventListener("input", function () {
+      // Convert Value To Uppercase
+      this.value = this.value.toUpperCase();
+      // Focus To Next Input When Typing Current Input
+      let nextLetter = letters[index + 1];
+      nextLetter ? nextLetter.focus() : null;
+    });
+    // Manage Arrows To Inputs
+    input.addEventListener("keydown", function (event) {
+      let currentIndex = Array.from(letters).indexOf(this);
+      if (event.key === "ArrowRight") {
+        let nextLetter = currentIndex + 1;
+        nextLetter < letters.length ? letters[nextLetter].focus() : null;
+      }
+      if (event.key === "ArrowLeft") {
+        let nextLetter = currentIndex - 1;
+        nextLetter >= 0 ? letters[nextLetter].focus() : null;
+      }
+    });
+  });
 }
 
 window.onload = function () {

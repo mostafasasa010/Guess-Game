@@ -43,6 +43,7 @@ h1 {
           font-weight: bold;
           text-align: center;
           color: var(--main-color);
+          background-color: white;
           &:not(:last-of-type) {
             margin-right: 10px;
           }
