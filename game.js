@@ -4,14 +4,34 @@ document.querySelector("h1").innerHTML = gameName;
 document.querySelector(
   "footer"
 ).innerHTML = `${gameName} Created By Mostafa Ahmed`;
+let msg = document.querySelector(".msg");
+
+let guessWord = "";
+let words = [
+  "neck",
+  "milk",
+  "banana",
+  "clock",
+  "fire",
+  "orange",
+  "robot",
+  "worm",
+  "cookie",
+  "green",
+  "candle",
+  "bear",
+  "hair",
+];
+guessWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
+
+console.log(guessWord);
 
 let numbersTries = 5;
-let numbersLetters = 6;
+let numbersLetters = guessWord.length;
 let currentTry = 1;
 
 function generateInputs() {
   let inputs = document.querySelector(".inputs");
-
   // Generate Tries
   for (let i = 1; i <= numbersTries; i++) {
     let div = document.createElement("div");
@@ -65,6 +85,49 @@ function generateInputs() {
       }
     });
   });
+}
+
+let checkBtn = document.querySelector(".check-btn");
+checkBtn.addEventListener("click", handleCheck);
+
+function handleCheck() {
+  let succes = true;
+  for (let i = 1; i <= guessWord.length; i++) {
+    let inputField = document.querySelector(`#try-${currentTry}-letter-${i}`);
+    let guessLetter = inputField.value.toLowerCase();
+    let actualLetter = guessWord[i - 1];
+    if (guessLetter === actualLetter) {
+      inputField.classList.add("yes-in-place");
+    } else if (guessWord.includes(guessLetter) && guessLetter !== "") {
+      inputField.classList.add("not-in-place");
+      succes = false;
+    } else {
+      inputField.classList.add("no");
+      succes = false;
+    }
+  }
+
+  if (succes) {
+    let inputsDiv = document.querySelectorAll(".inputs > div");
+    inputsDiv.forEach((input) => {
+      input.classList.add("disabled-inputs");
+    });
+    // Disabled Inputs Not Included In Current Try
+    let disabledInputs = document.querySelectorAll(
+      ".inputs .disabled-inputs input"
+    );
+    disabledInputs.forEach((input) => {
+      input.disabled = true;
+    });
+    msg.classList.add("active");
+    msg.innerHTML = `You Win After ${currentTry} ${
+      currentTry > 1 ? "Tries" : "Try"
+    } And The Word Is <span>${guessWord}</span>`;
+    checkBtn.classList.add("disabled");
+    checkBtn.disabled = true;
+  } else {
+    console.log("You Lose");
+  }
 }
 
 window.onload = function () {

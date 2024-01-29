@@ -47,6 +47,21 @@ h1 {
           text-align: center;
           color: var(--main-color);
           background-color: white;
+          &.yes-in-place {
+            background-color: var(--green-color);
+            border-color: var(--green-color);
+            color: white;
+          }
+          &.not-in-place {
+            background-color: var(--blue-color);
+            border-color: var(--blue-color);
+            color: white;
+          }
+          &.no {
+            background-color: var(--red-color);
+            border-color: var(--red-color);
+            color: white;
+          }
           &:not(:last-of-type) {
             margin-right: 10px;
           }
@@ -79,6 +94,23 @@ h1 {
       .hint-btn {
         width: fit-content;
         background-color: var(--green-color);
+      }
+      .disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+    .msg.active {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      background-color: var(--main-color);
+      color: white;
+      span {
+        color: #ffeb3b;
+        font-size: 22px;
       }
     }
   }
