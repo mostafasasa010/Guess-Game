@@ -130,6 +130,8 @@ function handleCheck() {
     } And The Word Is <span>${guessWord}</span>`;
     checkBtn.classList.add("disabled");
     checkBtn.disabled = true;
+    btnHint.classList.add("disabled");
+    btnHint.disabled = true;
   } else {
     let currentDiv = document.querySelector(`.try-${currentTry}`);
     let currentDivInputs = document.querySelectorAll(
@@ -152,6 +154,8 @@ function handleCheck() {
       msg.innerHTML = `You Lose The Word Is <span>${guessWord}</span>`;
       checkBtn.classList.add("disabled");
       checkBtn.disabled = true;
+      btnHint.classList.add("disabled");
+      btnHint.disabled = true;
     }
   }
 }
@@ -160,9 +164,22 @@ function getHint() {
   if (hintNumber > 0) {
     hintNumber--;
     document.querySelector(".hint-btn span").innerHTML = hintNumber;
-  } else {
-    btnHint.disabled = true;
+  }
+  if (hintNumber === 0) {
     btnHint.classList.add("disabled");
+    btnHint.disabled = true;
+  }
+  let enabledInputs = document.querySelectorAll("input:not([disabled])");
+  let emptyInputs = Array.from(enabledInputs).filter(
+    (input) => input.value === ""
+  );
+  if (emptyInputs.length > 0) {
+    let randomIndex = Math.floor(Math.random() * emptyInputs.length);
+    let randomInput = emptyInputs[randomIndex];
+    let indexToFill = Array.from(enabledInputs).indexOf(randomInput);
+    if (indexToFill !== -1) {
+      randomInput.value = guessWord[indexToFill].toUpperCase();
+    }
   }
 }
 
