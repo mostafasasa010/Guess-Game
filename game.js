@@ -5,6 +5,7 @@ document.querySelector(
   "footer"
 ).innerHTML = `${gameName} Created By Mostafa Ahmed`;
 let msg = document.querySelector(".msg");
+let btnHint = document.querySelector(".hint-btn");
 
 let guessWord = "";
 let words = [
@@ -29,6 +30,10 @@ console.log(guessWord);
 let numbersTries = 5;
 let numbersLetters = guessWord.length;
 let currentTry = 1;
+let hintNumber = 2;
+
+document.querySelector(".hint-btn span").innerHTML = hintNumber;
+btnHint.addEventListener("click", getHint);
 
 function generateInputs() {
   let inputs = document.querySelector(".inputs");
@@ -126,7 +131,38 @@ function handleCheck() {
     checkBtn.classList.add("disabled");
     checkBtn.disabled = true;
   } else {
-    console.log("You Lose");
+    let currentDiv = document.querySelector(`.try-${currentTry}`);
+    let currentDivInputs = document.querySelectorAll(
+      `.try-${currentTry} input`
+    );
+    currentDiv.classList.add("disabled-inputs");
+    currentDivInputs.forEach((input) => (input.disabled = true));
+
+    currentTry++;
+    console.log(currentTry);
+
+    if (currentTry <= numbersTries) {
+      let nextDiv = document.querySelector(`.try-${currentTry}`);
+      let nextDivInputs = document.querySelectorAll(`.try-${currentTry} input`);
+      nextDiv.classList.remove("disabled-inputs");
+      nextDivInputs.forEach((input) => (input.disabled = false));
+      nextDiv.children[1].focus();
+    } else {
+      msg.classList.add("active");
+      msg.innerHTML = `You Lose The Word Is <span>${guessWord}</span>`;
+      checkBtn.classList.add("disabled");
+      checkBtn.disabled = true;
+    }
+  }
+}
+
+function getHint() {
+  if (hintNumber > 0) {
+    hintNumber--;
+    document.querySelector(".hint-btn span").innerHTML = hintNumber;
+  } else {
+    btnHint.disabled = true;
+    btnHint.classList.add("disabled");
   }
 }
 
