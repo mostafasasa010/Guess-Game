@@ -26,6 +26,8 @@ const words = [
 ];
 guessWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
 
+console.log(guessWord);
+
 let numbersTries = 5;
 let numbersLetters = guessWord.length;
 let currentTry = 1;
@@ -204,6 +206,11 @@ function handleBackSpace(event) {
 }
 
 document.addEventListener("keydown", handleBackSpace);
+
+const restartBtn = document.querySelector(".restart");
+restartBtn.addEventListener("click", function () {
+  window.location.reload();
+});
 
 window.onload = function () {
   generateInputs();

@@ -19,6 +19,17 @@ h1 {
   text-align: center;
   background-color: var(--main-color);
   color: white;
+  @media (max-width: 769px) {
+    margin-bottom: 25px;
+  }
+  @media (max-width: 426px) {
+    margin-bottom: 25px;
+  }
+  @media (max-width: 320px) {
+    margin-bottom: 30px;
+    padding: 15px;
+    font-size: 26px;
+  }
 }
 .game-container {
   margin: 0 auto;
@@ -26,6 +37,27 @@ h1 {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  @media (max-width: 769px) {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+    padding: 0 20px;
+  }
+  @media (max-width: 426px) {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+    padding: 0 20px;
+  }
+  @media (max-width: 320px) {
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+    padding: 0 20px;
+  }
   .game-area {
     .inputs {
       > div {
@@ -36,6 +68,17 @@ h1 {
           font-size: 26px;
           font-weight: bold;
           margin-right: 20px;
+          @media (max-width: 426px) {
+            font-size: 18px;
+            margin-right: 12px;
+            width: 50px;
+          }
+          @media (max-width: 320px) {
+            font-size: 16px;
+            margin-right: 10px;
+            font-weight: 600;
+            width: 40px;
+          }
         }
         input {
           width: 60px;
@@ -47,6 +90,22 @@ h1 {
           text-align: center;
           color: var(--main-color);
           background-color: white;
+          @media (max-width: 426px) {
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+            &:not(:last-of-type) {
+              margin-right: 5px !important;
+            }
+          }
+          @media (max-width: 320px) {
+            width: 35px;
+            height: 35px;
+            font-size: 28px;
+            &:not(:last-of-type) {
+              margin-right: 5px !important;
+            }
+          }
           &.yes-in-place {
             background-color: var(--green-color);
             border-color: var(--green-color);
@@ -108,13 +167,53 @@ h1 {
       padding: 20px;
       background-color: var(--main-color);
       color: white;
+      @media (max-width: 1025px) {
+        margin-bottom: 100px;
+      }
+      @media (max-width: 426px) {
+        margin-bottom: 0 !important;
+        font-size: 18px;
+        padding: 15px;
+        span {
+          font-size: 20px !important;
+        }
+      }
+      @media (max-width: 320px) {
+        font-size: 18px;
+        padding: 15px;
+        span {
+          font-size: 20px !important;
+        }
+      }
       span {
         color: #ffeb3b;
         font-size: 22px;
       }
     }
+    .restart {
+      border: none;
+      color: white;
+      padding: 12px 16px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: var(--main-color);
+      margin: 10px 0 50px;
+      @media (max-width: 426px) {
+        margin-bottom: 10px;
+      }
+    }
   }
   .key-colors {
+    @media (max-width: 769px) {
+      margin-bottom: 70px;
+    }
+    @media (max-width: 426px) {
+      margin-bottom: 70px;
+    }
+    @media (max-width: 320px) {
+      margin-bottom: 70px;
+    }
     h2 {
       padding: 18px;
       margin: 0 0 10px;
@@ -146,6 +245,9 @@ h1 {
       .key-text {
         font-size: 18px;
         font-weight: bold;
+        @media (max-width: 320px) {
+          font-size: 14px;
+        }
       }
     }
   }
@@ -163,4 +265,14 @@ footer {
   bottom: 0;
   left: 0;
   letter-spacing: 1px;
+  @media (max-width: 426px) {
+    font-size: 14px;
+    padding: 12px;
+    font-weight: 600;
+  }
+  @media (max-width: 320px) {
+    font-size: 14px;
+    padding: 12px;
+    font-weight: 600;
+  }
 }
